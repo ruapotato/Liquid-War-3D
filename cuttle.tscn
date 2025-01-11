@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://2bcscaqm2ia1"]
+
+[ext_resource type="Script" path="res://cuttle.gd" id="1_ttbaa"]
+[ext_resource type="PackedScene" uid="uid://dbxk740ivv15c" path="res://cuttle_import.tscn" id="2_e8ak7"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6arkr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mdvyw"]
+size = Vector3(0.475, 0.405, 0.85)
+
+[node name="cuttle" type="RigidBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_6arkr")
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 99999
+angular_damp = 100.0
+script = ExtResource("1_ttbaa")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.210177, 0.499233)
+shape = SubResource("BoxShape3D_mdvyw")
+
+[node name="cuttle_mesh" parent="." instance=ExtResource("2_e8ak7")]
+
+[node name="beak" type="Node3D" parent="cuttle_mesh"]
+
+[node name="toe_bits" type="Node3D" parent="cuttle_mesh"]
+
+[node name="piv" type="Node3D" parent="."]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="piv"]
+
+[node name="Camera3D" type="Camera3D" parent="piv/SpringArm3D"]
+current = true
+
+[node name="Life_Text" type="Label3D" parent="piv/SpringArm3D/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.657647, 0.515693, -0.792173)
+text = "100"
+
+[node name="Power_Text" type="Label3D" parent="piv/SpringArm3D/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.454695, 0.51191, -0.792173)
+text = "100"
+
+[node name="network_upid" type="Label3D" parent="piv/SpringArm3D/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0529931, 0.112536, -0.792173)
+text = "100"
+
+[node name="range" type="Node3D" parent="piv/SpringArm3D/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1000.26)

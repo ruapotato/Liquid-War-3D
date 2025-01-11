@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://ccy1jqqmwq1b6"]
+
+[ext_resource type="Script" path="res://laser_ball.gd" id="1_18jsb"]
+[ext_resource type="Material" uid="uid://yv0k7evc6qwd" path="res://native/laser_L1.tres" id="2_papv5"]
+[ext_resource type="AudioStream" uid="uid://cimp6v8r4jhxh" path="res://import/on_hit.wav" id="4_7fmy4"]
+[ext_resource type="AudioStream" uid="uid://dd4761ux1jy6d" path="res://import/shoot.wav" id="4_8wi4v"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_qe26e"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_mxk8a"]
+
+[node name="BALL" type="RigidBody3D"]
+contact_monitor = true
+script = ExtResource("1_18jsb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+material_override = ExtResource("2_papv5")
+mesh = SubResource("SphereMesh_qe26e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+shape = SubResource("SphereShape3D_mxk8a")
+
+[node name="shot" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_8wi4v")
+volume_db = -30.0
+
+[node name="hit" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_7fmy4")
+volume_db = -25.0
+max_db = -15.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

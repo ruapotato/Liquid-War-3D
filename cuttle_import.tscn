@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbxk740ivv15c"]
+
+[ext_resource type="PackedScene" uid="uid://dmjd4bknapxpb" path="res://import/cuttle.glb" id="1_b8pfb"]
+[ext_resource type="Shader" uid="uid://bmonqeom7csf" path="res://native/cuttle_skin.tres" id="2_cf7os"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f7hxu"]
+render_priority = 0
+shader = ExtResource("2_cf7os")
+shader_parameter/color_1 = Color(0.278384, 0.014134, 0.515128, 1)
+shader_parameter/color_2 = Color(0.332906, 0.633024, 1, 1)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yp03s"]
+animation = &"idel"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_knoiu"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_5b4kg"]
+graph_offset = Vector2(-485.154, 32.2209)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_yp03s")
+"nodes/Animation 2/position" = Vector2(-360, 160)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_knoiu")
+nodes/TimeScale/position = Vector2(-20, 120)
+nodes/output/position = Vector2(260, 120)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation 2"]
+
+[node name="cuttle" instance=ExtResource("1_b8pfb")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/0/position = Vector3(0, -0.000875329, -0.0290282)
+bones/1/position = Vector3(0, 1.00243, 0.0806188)
+bones/2/position = Vector3(0, 1.00599, 0.198679)
+
+[node name="Plane" parent="Armature/Skeleton3D" index="0"]
+material_override = SubResource("ShaderMaterial_f7hxu")
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_5b4kg")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/TimeScale/scale = 1.0

@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://duu5641o6wgyw"]
+
+[ext_resource type="PackedScene" uid="uid://b1enq1iyryqq0" path="res://import/dolphin.glb" id="1_rs432"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1u0jf"]
+animation = &"dolphin_bite"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ca71x"]
+animation = &"dolphin_idel"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_dgdiv"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_ohp82"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_qar2i"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_xv3eo"]
+filter_enabled = true
+filters = ["dolphin2/Skeleton3D:mouth_bot", "dolphin2/Skeleton3D:mouth_top"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_bb5gs"]
+graph_offset = Vector2(-364.594, 81.9181)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_ca71x")
+nodes/Animation/position = Vector2(-200, 100)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_1u0jf")
+"nodes/Animation 2/position" = Vector2(-220, 240)
+nodes/BlendTree/node = SubResource("AnimationNodeBlendTree_dgdiv")
+nodes/BlendTree/position = Vector2(1140, 700)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_qar2i")
+nodes/TimeScale/position = Vector2(40, 100)
+"nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_ohp82")
+"nodes/TimeScale 2/position" = Vector2(60, 260)
+nodes/bite/node = SubResource("AnimationNodeOneShot_xv3eo")
+nodes/bite/position = Vector2(240, 120)
+nodes/output/position = Vector2(440, 120)
+node_connections = [&"output", 0, &"bite", &"TimeScale", 0, &"Animation", &"TimeScale 2", 0, &"Animation 2", &"bite", 0, &"TimeScale", &"bite", 1, &"TimeScale 2"]
+
+[node name="dolphin" instance=ExtResource("1_rs432")]
+
+[node name="Skeleton3D" parent="dolphin2" index="0"]
+bones/0/position = Vector3(-0.0070951, 1.00074, -0.559412)
+bones/0/rotation = Quaternion(0.671026, -0.24721, 0.673826, -0.18593)
+bones/1/position = Vector3(0.00709525, 0.999263, -0.189912)
+bones/1/rotation = Quaternion(0.0606555, -0.00393213, -0.00361502, 0.998145)
+bones/3/rotation = Quaternion(-0.1726, -3.48038e-14, -1.50892e-08, 0.984992)
+bones/4/rotation = Quaternion(0.110686, 6.29485e-14, 9.67647e-09, 0.993855)
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_bb5gs")
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/TimeScale/scale = 4.0
+"parameters/TimeScale 2/scale" = 5.0
+parameters/bite/active = false
+parameters/bite/internal_active = false
+parameters/bite/request = 0

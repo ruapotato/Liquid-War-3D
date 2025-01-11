@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://r2028wtj464d"]
+
+[ext_resource type="PackedScene" uid="uid://bnke8rh0mk7yf" path="res://import/puff.glb" id="1_4jbo4"]
+
+[node name="puff" instance=ExtResource("1_4jbo4")]

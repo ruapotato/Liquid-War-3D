@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://i0jhsa3psred"]
+
+[ext_resource type="Script" path="res://network.gd" id="1_7y2su"]
+
+[node name="Network" type="Node3D"]
+script = ExtResource("1_7y2su")
+
+[node name="Menu" type="Node2D" parent="."]
+
+[node name="Host" type="Button" parent="Menu"]
+offset_left = 465.0
+offset_top = 276.0
+offset_right = 509.0
+offset_bottom = 307.0
+text = "Host"
+
+[node name="Connect" type="Button" parent="Menu"]
+offset_left = 612.0
+offset_top = 282.0
+offset_right = 684.0
+offset_bottom = 313.0
+text = "Connect"
+
+[node name="Network_Info" type="Node2D" parent="."]
+
+[node name="UPID" type="RichTextLabel" parent="Network_Info"]
+offset_left = 10.0
+offset_top = 598.0
+offset_right = 50.0
+offset_bottom = 638.0
+
+[connection signal="pressed" from="Menu/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="Menu/Connect" to="." method="_on_connect_pressed"]

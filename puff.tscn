@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://i1g3b6nfo7s5"]
+
+[ext_resource type="Script" path="res://puff.gd" id="1_3miv2"]
+[ext_resource type="PackedScene" uid="uid://r2028wtj464d" path="res://puff_import.tscn" id="1_d0lwi"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tvsru"]
+radius = 0.9
+
+[node name="puff" type="RigidBody3D"]
+script = ExtResource("1_3miv2")
+
+[node name="puff" parent="." instance=ExtResource("1_d0lwi")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_tvsru")
