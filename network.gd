@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var cuttle_player = preload("res://cuttle.tscn")
+@onready var player = preload("res://player.tscn")
 var multiplayer_peer = ENetMultiplayerPeer.new()
 
 const PORT = 6969
@@ -68,7 +68,7 @@ func spawn_player(id: int):
 		return
 		
 	print("Spawning player with ID: ", id)
-	var new_player = cuttle_player.instantiate()
+	var new_player = player.instantiate()
 	new_player.name = str(id)
 	new_player.set_multiplayer_authority(id)
 	add_child(new_player)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://2bcscaqm2ia1"]
 
-[ext_resource type="Script" path="res://cuttle.gd" id="1_ttbaa"]
+[ext_resource type="Script" path="res://player.gd" id="1_ttbaa"]
 [ext_resource type="PackedScene" uid="uid://dbxk740ivv15c" path="res://cuttle_import.tscn" id="2_e8ak7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6arkr"]
